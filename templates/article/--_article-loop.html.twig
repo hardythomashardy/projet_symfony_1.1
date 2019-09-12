@@ -1,0 +1,31 @@
+{# templates/article/_article-loop.html.twig #}
+{% extends 'article/index.html.twig' %}
+{% block article-loop %}
+
+    {% for article in articles %}
+        <tr>
+            <td>{{ article.id }}</td>
+            <td>{{ article.libelle }}</td>
+            <td>{{ article.couleur }}</td>
+
+            <td>
+                <a href="{{ path('article_search', {'id': article.getCategorie.getId}) }}">{{ article.getCategorie.getDesignation }}</a>
+            </td>
+            <td class='text-center' width="30%">
+                <a class='shadow btn btn-primary' href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                <a class='shadow btn btn-danger' href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+            </td>
+        </tr>
+
+
+        </tbody>
+        </tr>
+        </td>
+        </tbody>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

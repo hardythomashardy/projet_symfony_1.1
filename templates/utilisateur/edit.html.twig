@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Utilisateur
+{% endblock %}
+
+{% block body %}
+
+   <div class='container-fluid  pt-5 '>
+      <div class='row justify-content-md-center '>
+         <div class='col-5 '>
+            <h1>Editer l'utilisateur</h1>
+            <p>
+               <i>
+                  <font size='2'>Modifier les informations...</font>
+               </i>
+            </p>
+            {{ include('utilisateur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            <div class='row ml-2'>
+<button class="mx-2 shadow btn btn-success ">{{ button_label|default('Mettre à jour') }}</button>
+
+               {{ form_end(form) }}
+<a class='shadow btn btn-primary' href="{{ path('utilisateur_index') }}">back to list</a>
+
+               <div class='mx-2'>
+                  {{ include('utilisateur/_delete_form.html.twig') }}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

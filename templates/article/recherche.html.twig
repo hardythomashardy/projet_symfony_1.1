@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultat recherche{% endblock %}
+
+{% block body %}
+
+<div class='container-fluid  pt-5 '>
+    <div class='row justify-content-md-center '>
+        <div class='col-6 '>
+
+            <h1>Liste d'article de couleur :  "{{ couleur }}"</h1>
+
+            <div class='pt-3'>
+                <table class="shadow table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Designation</th>
+                        <th>Couleur</th>
+                        <th>Categorie</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.libelle }}</td>
+                        <td>{{ article.couleur }}</td>
+
+                        <td>
+                            <a href="{{ path('article_search', {'id': article.getCategorie.getId}) }}">{{ article.getCategorie.getDesignation }}</a>
+                        </td>
+                        <td class='text-center' width="30%">
+                            <a class='shadow btn btn-primary' href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                            <a class='shadow btn btn-danger' href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                        </td>
+                    </tr>
+
+
+                    {#</tbody>#}
+                    {#</tr>#}
+                    {#</td>#}
+                    {#</tbody>#}
+                    {#</tr>#}
+                    {% else %}
+                        <tr>
+                            <td colspan="3">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    {# preventing cpd copy paste detector : need to reuse this commented block in a template who extends article/index AND article/recherche#}
+                    {#{% block articleLoop %}#}
+
+                    {#{% for article in articles %}#}
+                    {#<tr>#}
+                    {#<td>{{ article.id }}</td>#}
+                    {#<td>{{ article.libelle }}</td>#}
+                    {#<td>{{ article.couleur }}</td>#}
+
+                    {#<td>#}
+                    {#<a href="{{ path('article_search', {'id': article.getCategorie.getId}) }}">{{ article.getCategorie.getDesignation }}</a>#}
+                    {#</td>#}
+                    {#<td class='text-center' width="30%">#}
+                    {#<a class='shadow btn btn-primary' href="{{ path('article_show', {'id': article.id}) }}">show</a>#}
+                    {#<a class='shadow btn btn-danger' href="{{ path('article_edit', {'id': article.id}) }}">edit</a>#}
+                    {#</td>#}
+                    {#</tr>#}
+                    {##}
+                    {##}
+                    {#</tbody>#}
+                    {#</tr>#}
+                    {#</td>#}
+                    {#</tbody>#}
+                    {#</tr>#}
+                    {#{% else %}#}
+                    {#<tr>#}
+                    {#<td colspan="3">no records found</td>#}
+                    {#</tr>#}
+                    {#{% endfor %}#}
+                    {#{% endblock %}#}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>{% endblock %}

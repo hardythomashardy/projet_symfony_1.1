@@ -1,0 +1,95 @@
+{# templates/article/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index
+{% endblock %}
+
+{% block body %}
+
+    <div class='container-fluid  pt-5 '>
+        <div class='row justify-content-center '>
+            <div class='col-lg-5 col-md-7 '>
+                {{ form_start(form) }}
+                <div class="row justify-content-center">
+                    <div class="col">
+                        {{ form_row(form.couleur) }}
+                    </div>
+                    <div class="col">
+                        <button class="mx2 shadow btn btn-primary">{{ button_label|default('Rechercher') }}</button>
+
+                        {#<a  class='shadow btn btn-primary'  href="{{ path('article_search_couleur',{'couleur':'couleur'}) }}">RECHERCHE</a>#}
+                    </div>
+
+                </div>
+                {{ form_end(form) }}
+
+                <h1>Liste des articles</h1>
+                <div class='pt-3'>
+                    <table class="shadow table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Designation</th>
+                                <th>Couleur</th>
+                                <th>Categorie</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for article in articles %}
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.libelle }}</td>
+                            <td>{{ article.couleur }}</td>
+
+                            <td>
+                                <a href="{{ path('article_search', {'id': article.getCategorie.getId}) }}">{{ article.getCategorie.getDesignation }}</a>
+                            </td>
+                            <td class='text-center' width="30%">
+                                <a class='shadow btn btn-primary' href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                                <a class='shadow btn btn-danger' href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                            </td>
+                        </tr>
+
+
+                        {#</tbody>#}
+                        {#</tr>#}
+                        {#</td>#}
+                        {#</tbody>#}
+                        {#</tr>#}
+                        {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        {# preventing cpd copy paste detector : need to reuse this commented block in a template who extends article/index AND article/recherche#}
+                        {#{% block articleLoop %}#}
+
+                        {#{% for article in articles %}#}
+                                {#<tr>#}
+                                    {#<td>{{ article.id }}</td>#}
+                                    {#<td>{{ article.libelle }}</td>#}
+                                    {#<td>{{ article.couleur }}</td>#}
+
+                                    {#<td>#}
+                                        {#<a href="{{ path('article_search', {'id': article.getCategorie.getId}) }}">{{ article.getCategorie.getDesignation }}</a>#}
+                                    {#</td>#}
+                                     {#<td class='text-center' width="30%">#}
+                                {#<a class='shadow btn btn-primary' href="{{ path('article_show', {'id': article.id}) }}">show</a>#}
+                                {#<a class='shadow btn btn-danger' href="{{ path('article_edit', {'id': article.id}) }}">edit</a>#}
+                            {#</td>#}
+                                {#</tr>#}
+                           {##}
+                           {##}
+                        {#</tbody>#}
+                    {#</tr>#}
+                {#</td>#}
+            {#</tbody>#}
+        {#</tr>#}
+    {#{% else %}#}
+        {#<tr>#}
+            {#<td colspan="3">no records found</td>#}
+        {#</tr>#}
+    {#{% endfor %}#}
+    {#{% endblock %}#}
+</tbody></table></div><a class='shadow btn btn-success' href="{{ path('article_new') }}">Create new</a></div></div></div>{% endblock %}

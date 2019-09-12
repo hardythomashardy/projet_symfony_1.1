@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+
+    {{ form_row(form.libelle) }}
+    {{ form_row(form.couleur) }}
+{{ form_row(form.categorie) }}
+    <button class="mx2 shadow btn btn-success ">{{ button_label|default('Valider') }}</button>
+
+{{ form_end(form) }}
